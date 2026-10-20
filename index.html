@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rastreamento de PDV · NEOBAND × 75 LAB</title>
+<meta name="description" content="Apresentação NEOBAND e 75 LAB: como funciona o QR code nas peças de PDV, a página de montagem, o painel de execução, o link ao vivo para o cliente, o preço por peça rastreada e a tag de rastreio ao vivo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23D20A11'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='Impact,sans-serif' font-size='15' fill='%23FFFFFF'%3ENB%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rastreamento de PDV · NEOBAND × 75 LAB">
+<meta property="og:description" content="O QR na peça, a página de montagem, o painel de execução e o link ao vivo do cliente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="ctxt" id="ctxt"></span></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <defs>
+  <symbol id="i-arr" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13.5 6.5 19.5 12l-6 5.5"/></symbol>
+  <symbol id="i-l" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M20 12H5M10.5 6.5 5 12l5.5 5.5"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m4 12.5 5.5 5.5L20 6.5"/></symbol>
+  <symbol id="i-no" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M5 12h14"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></g></symbol>
+  <symbol id="i-drag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.5 6.5 3 12l5.5 5.5M15.5 6.5 21 12l-5.5 5.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.5s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9.5" r="2.6"/></g></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1.2"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1.2"/><path stroke-linecap="round" d="M14 14h2.5v2.5M20.5 14v.01M14 20.5h.01M17.5 18v2.5h3v-3.2"/></g></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5A2 2 0 0 1 5 6.5h2.2L9 4h6l1.8 2.5H19a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></g></symbol>
+  <symbol id="i-live" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"/></g></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6h11v10.5h-11zM13.5 9.5h4l3.5 3.5v3.5h-7.5"/><circle cx="6.5" cy="17.5" r="2"/><circle cx="17" cy="17.5" r="2"/></g></symbol>
+  <symbol id="i-cd" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9 12 3.5 21.5 9v11.5h-19z"/><path d="M6.5 20.5v-8h11v8M6.5 15.5h11M6.5 18h11"/></g></symbol>
+  <symbol id="i-store" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9.5V20.5h17V9.5M2.5 4h19l-1.2 4.2a2.6 2.6 0 0 1-5 .3 2.7 2.7 0 0 1-5.1 0 2.6 2.6 0 0 1-5 0L2.5 4z"/><path d="M9.5 20.5v-6h5v6"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></g></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="9" cy="8.5" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M15.5 5.3a3.5 3.5 0 0 1 0 6.4M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></g></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21.5V3.5M5 4h12.5l-2.5 4 2.5 4H5"/></g></symbol>
+  <symbol id="i-city" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V9h6v12M11 21V3.5h8V21M7.5 12.5h1.5M7.5 16h1.5M14 7h2.5M14 10.5h2.5M14 14h2.5M14 17.5h2.5"/></g></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g></symbol>
+  <symbol id="i-hour" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12M6 21h12M7 3c0 5 5 6 5 9s-5 4-5 9M17 3c0 5-5 6-5 9s5 4 5 9"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 4.5 5.5v6c0 4.8 3.2 8.6 7.5 10 4.3-1.4 7.5-5.2 7.5-10v-6z"/><path d="m8.5 12 2.5 2.5 4.5-4.8"/></g></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/></g></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></g></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 20.5h17M6.5 20.5v-6M11 20.5V9M15.5 20.5v-8.5M20 20.5V4.5"/></g></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 2.5a6.5 6.5 0 0 1 6.5 6.5H15z"/></g></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 2h-15z"/><path d="M10 21h4"/></g></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.2v.1"/></g></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h7.5a3.5 3.5 0 0 0 0-7h-7a3.5 3.5 0 0 1 0-7H16"/></g></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 4.5v15l13-7.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></g></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></g></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></g></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="8" y="8" width="12.5" height="12.5" rx="2.5"/><path d="M16 8V5.5A2 2 0 0 0 14 3.5H5.5a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2H8"/></g></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3.5v12M6.5 10.5 12 16l5.5-5.5M4 20.5h16"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3v14M6 11l6 6 6-6"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 8h14.5M15 4.5 18.5 8 15 11.5M20 16H5.5M9 12.5 5.5 16 9 19.5"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M19 5 5 19"/><circle cx="7" cy="7" r="2.5"/><circle cx="17" cy="17" r="2.5"/></g></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4.5c3-1.5 5.5-1 5.5-1s.5 2.5-1 5.5l-6 6-4.5-4.5z"/><path d="M8 10.5 4.5 10l3-3.5h4M13.5 16l.5 3.5 3.5-3v-4M8.5 15.5c-1.5 0-3 1.5-3 3.5 2 0 3.5-1.5 3.5-3"/></g></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2.5 8 12 13l9.5-5z"/><path d="m2.5 12.5 9.5 5 9.5-5M2.5 16.5l9.5 5 9.5-5"/></g></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M13.5 2.5 4.5 13.5h7l-1 8 9-11h-7z"/></symbol>
+  <symbol id="i-display" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.5h12v13H6zM6 7h12M6 11.5h12M8 15.5 6.5 21.5M16 15.5l1.5 6"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 12a8 8 0 1 0 2.4-5.7M4 3.5v4h4"/></symbol>
+  <symbol id="i-dash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="14" rx="2.5"/><path d="M8 21h8M12 17.5V21M6.5 13l3-3.5 3 2 4.5-5"/></g></symbol>
+  <symbol id="i-geo" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="8" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="3"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"/></g></symbol>
+ </defs>
+</svg>
+
+<div id="stage">
+ <div id="prog"></div>
+ <div class="cine cine-spot" id="cineSpot"></div><div class="cine cine-vig"></div><div class="cine cine-grain"></div>
+
+ <!-- 01 ................................................................. capa -->
+ <section class="slide t-ink s-capa" id="capa" data-title="Capa" data-chap="Rastreamento de PDV">
+  <div class="cap-l">
+   <div class="eyebrow plain rv">NEOBAND × 75 LAB · rastreamento de ponto de venda</div>
+   <h1 class="d rv" style="--d:1">Prova acima<br>de <span class="ac">promessa.<svg class="wave" viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M3 14 Q80 4 150 12 T297 8"/></svg></span></h1>
+   <p class="kick rv" style="--d:2">A distância entre o CD e a gôndola agora tem dado.</p>
+   <p class="lead rv" style="--d:2">Duas tecnologias, explicadas uma de cada vez: o <b>QR na peça</b> e a <b>tag ao vivo</b>.</p>
+   <div class="cta rv" style="--d:3">
+    <button class="btn" data-go="comoqr">Começar pelo QR <span class="arr">→</span></button>
+    <button class="btn alt" data-go="preco">Ver o investimento</button>
+   </div>
+   <div class="statband rv" style="--d:4">
+    <div class="sb"><b>3</b><span>frentes do QR</span></div>
+    <div class="sb"><b>12</b><span>indicadores de execução</span></div>
+    <div class="sb"><b>R$ 0,50</b><span>por peça rastreada</span></div>
+   </div>
+  </div>
+  <div class="decos"><svg class="deco d-circ" viewBox="0 0 90 90"><circle cx="45" cy="45" r="40"/></svg><svg class="deco d-sq" viewBox="0 0 60 60"><rect x="12" y="12" width="36" height="36"/></svg><svg class="deco d-tri" viewBox="0 0 60 60"><path d="M8 12h44L30 50z"/></svg><svg class="deco d-ring" viewBox="0 0 70 70"><circle cx="35" cy="35" r="26"/></svg></div>
+  <div class="radar">
+   <svg class="rd" viewBox="0 0 700 700">
+    <defs><linearGradient id="swg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#F42730" stop-opacity="0"/><stop offset="1" stop-color="#F42730" stop-opacity=".32"/></linearGradient></defs>
+    <g fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1.5">
+     <circle cx="350" cy="350" r="90"/><circle cx="350" cy="350" r="180"/><circle cx="350" cy="350" r="270"/><circle cx="350" cy="350" r="340" stroke-dasharray="4 8"/>
+     <path d="M350 0v700M0 350h700"/>
+    </g>
+    <g class="sweep"><path d="M350 350 L690 350 A340 340 0 0 0 590 110 Z" fill="url(#swg)"/><path d="M350 350 L690 350" stroke="#F42730" stroke-width="2.5"/></g>
+    <circle cx="350" cy="350" r="7" fill="#F42730"/>
+   </svg>
+   <div class="rpin" style="left:420px;top:240px;--pa:.7s;--pd:.2s"><i></i><b><em></em>Loja 214 <small>peça instalada</small></b></div>
+   <div class="rpin teal" style="left:210px;top:190px;--pa:.95s;--pd:.8s"><i></i><b><em></em>Foto da fachada <small>há 12 min</small></b></div>
+   <div class="rpin" style="left:260px;top:480px;--pa:1.2s;--pd:1.3s"><i></i><b><em></em>58 lojas <small>positivadas</small></b></div>
+  </div>
+ </section>
+
+ <!-- 02 ............................................................. as dores -->
+ <section class="slide t-white s-dores" id="dores" data-title="O que dói hoje" data-chap="O problema">
+  <div class="do-head">
+   <div class="eyebrow" data-n="(01)">A rotina de quem toca trade</div>
+   <h2 class="d">Seis dores que<br>todo mundo conhece<br><span class="hl">e ninguém resolveu.</span></h2>
+  </div>
+  <ol class="do-grade">
+   <li><i>01</i><b>Falta comprovação da execução</b><span>A peça foi instalada, mas a prova é foto solta no grupo de WhatsApp, sem loja, sem hora e sem quem fez.</span></li>
+   <li><i>02</i><b>Ninguém sabe onde o material foi positivado</b><span>O material sai do CD e some do radar. Qual loja recebeu, quantas peças ficaram em cada uma, ninguém responde na hora.</span></li>
+   <li><i>03</i><b>O relatório não bate com a loja</b><span>A planilha diz cem por cento executado e o vendedor liga dizendo que naquela loja nunca chegou nada.</span></li>
+   <li><i>04</i><b>Cada promotor monta de um jeito</b><span>Sem treinamento na mão, a mesma peça vira cinco montagens diferentes, e a marca aparece torta na gôndola.</span></li>
+   <li><i>05</i><b>Material some e você descobre tarde</b><span>Display de valor desaparece da loja e a conta só fecha meses depois, no inventário, quando já virou prejuízo.</span></li>
+   <li><i>06</i><b>Prestar contas custa duas semanas</b><span>Para mostrar resultado, alguém junta foto, planilha e e-mail à mão. Quando o deck fica pronto, a ação já acabou.</span></li>
+  </ol>
+  <p class="do-pe">Nenhuma dessas dores é de planejamento. Todas são de <b>falta de dado no momento em que a coisa acontece</b>.</p>
+ </section>
+
+ <!-- 03 ........................................................... o problema -->
+ <section class="slide t-lime s-cego" id="cego" data-title="O ponto cego" data-chap="O problema">
+  <div class="ce-top">
+   <div class="eyebrow" data-n="(02)">O ponto cego do trade</div>
+   <h2 class="d">Quando a peça sai<br>do CD, começa <span class="hl">a fé.</span></h2>
+  </div>
+  <ol class="ce-q">
+   <li><span class="n">?</span><b>Chegou mesmo na loja certa?</b></li>
+   <li><span class="n">?</span><b>Foi montada do jeito certo?</b></li>
+   <li><span class="n">?</span><b>Continua lá depois de 30 dias?</b></li>
+  </ol>
+  <p class="ce-pe">Hoje a resposta vem por foto solta no grupo de WhatsApp, quando vem. O investimento em material é aprovado no plano e conferido no boato.</p>
+  <div class="ce-mark"><svg viewBox="0 0 24 24"><use href="#i-eye"/></svg></div>
+ </section>
+
+ <!-- 03 ............................................................... trilha -->
+ <section class="slide t-ink s-trilha" id="trilha" data-title="O caminho da conversa" data-chap="Agenda">
+  <div class="tr-head">
+   <div class="eyebrow plain" data-n="(03)">O caminho desta conversa</div>
+   <h2 class="d">Uma tecnologia<br>de cada vez.</h2>
+   <p class="lead">Primeiro o QR, que já resolve a maior parte. Depois a tag ao vivo, para quem precisa saber onde a peça está agora.</p>
+  </div>
+  <div class="tr-via">
+   <div class="tr-cap">
+    <span class="tc-n">Capítulo 01</span>
+    <h3>QR na peça</h3>
+    <div class="tr-steps">
+     <button data-go="comoqr"><i>01</i>Como funciona</button>
+     <button data-go="pagina"><i>02</i>A página que o QR abre</button>
+     <button data-go="painel"><i>03</i>O painel de execução</button>
+     <button data-go="link"><i>04</i>O link ao vivo do cliente</button>
+     <button data-go="preco"><i>05</i>Investimento por peça</button>
+    </div>
+   </div>
+   <div class="tr-cap alt">
+    <span class="tc-n">Capítulo 02</span>
+    <h3>Tag ao vivo</h3>
+    <div class="tr-steps">
+     <button data-go="quandotag"><i>06</i>Quando o QR não basta</button>
+     <button data-go="comotag"><i>07</i>Como a tag funciona</button>
+     <button data-go="planos"><i>08</i>Planos da tag</button>
+    </div>
+   </div>
+   <div class="tr-cap fim">
+    <span class="tc-n">Fecho</span>
+    <h3>Decisão</h3>
+    <div class="tr-steps">
+     <button data-go="escolher"><i>09</i>Qual usar em cada caso</button>
+     <button data-go="comecar"><i>10</i>Como começamos</button>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 04 ..................................................... como funciona o QR -->
+ <section class="slide t-white s-comoqr" id="comoqr" data-title="QR · como funciona" data-chap="01 · QR na peça">
+  <div class="cq-head">
+   <div class="eyebrow" data-n="(04)">Capítulo 01 · QR na peça</div>
+   <h2 class="d">A jornada de um código,<br>em <span class="hl">quatro paradas.</span></h2>
+  </div>
+
+  <div class="jornada">
+   <svg class="jr-trilha" viewBox="0 0 1440 20" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M10 10h1420" stroke="#C9CEC0" stroke-width="3" stroke-dasharray="2 14" stroke-linecap="round"/>
+   </svg>
+   <i class="jr-bolha" aria-hidden="true"></i>
+
+   <article class="jr" style="--d:0">
+    <div class="jr-art">
+     <svg viewBox="0 0 120 120" aria-hidden="true">
+      <path class="tr" d="M18 44 60 24l42 20v44L60 108 18 88z"/>
+      <path class="tr" d="M18 44 60 64l42-20M60 64v44"/>
+      <rect class="fill-lime" x="46" y="18" width="30" height="30" rx="2"/>
+      <g class="qr-mini"><rect x="51" y="23" width="7" height="7"/><rect x="64" y="23" width="7" height="7"/><rect x="51" y="36" width="7" height="7"/><rect x="64" y="36" width="4" height="4"/><rect x="70" y="40" width="3" height="3"/></g>
+     </svg>
+    </div>
+    <b class="jr-n">01</b>
+    <h3>Sai da produção com o seu QR</h3>
+    <p>Um código único por peça, impresso na arte ou em etiqueta aplicada.</p>
+   </article>
+
+   <article class="jr" style="--d:1">
+    <div class="jr-art">
+     <svg viewBox="0 0 120 120" aria-hidden="true">
+      <rect class="tr" x="34" y="14" width="52" height="92" rx="8"/>
+      <rect class="fill-lime" x="42" y="28" width="36" height="46" rx="2"/>
+      <g class="qr-mini"><rect x="47" y="33" width="8" height="8"/><rect x="65" y="33" width="8" height="8"/><rect x="47" y="51" width="8" height="8"/><rect x="63" y="53" width="5" height="5"/><rect x="70" y="60" width="4" height="4"/></g>
+      <path class="tr tl" d="M92 44a22 22 0 0 1 0 32M102 36a34 34 0 0 1 0 48"/>
+      <path class="tr tl" d="M28 44a22 22 0 0 0 0 32M18 36a34 34 0 0 0 0 48"/>
+      <rect class="fill-ink" x="48" y="84" width="24" height="5" rx="2.5"/>
+     </svg>
+    </div>
+    <b class="jr-n">02</b>
+    <h3>O promotor aponta a câmera</h3>
+    <p>Sem aplicativo, sem cadastro e sem senha para decorar. Abre no navegador.</p>
+   </article>
+
+   <article class="jr" style="--d:2">
+    <div class="jr-art">
+     <svg viewBox="0 0 120 120" aria-hidden="true">
+      <rect class="tr" x="24" y="30" width="72" height="62" rx="6"/>
+      <path class="fill-lime" d="M24 36a6 6 0 0 1 6-6h60a6 6 0 0 1 6 6v8H24z"/>
+      <path class="tr" d="M36 78l14-16 10 11 9-12 15 17"/>
+      <circle class="fill-ink" cx="74" cy="58" r="5"/>
+      <g class="jr-pin"><path class="fill-ink" d="M96 10c-8 0-14 6-14 14 0 10 14 24 14 24s14-14 14-24c0-8-6-14-14-14z"/><circle cx="96" cy="24" r="5" fill="#F42730"/></g>
+     </svg>
+    </div>
+    <b class="jr-n">03</b>
+    <h3>Loja, foto da fachada e GPS</h3>
+    <p>Quem instalou, em qual loja e a prova visual, com a hora exata do celular.</p>
+   </article>
+
+   <article class="jr" style="--d:3">
+    <div class="jr-art">
+     <svg viewBox="0 0 120 120" aria-hidden="true">
+      <rect class="tr" x="14" y="24" width="92" height="64" rx="6"/>
+      <path class="tr" d="M14 40h92"/>
+      <rect class="fill-lime" x="26" y="56" width="12" height="20" rx="1"/>
+      <rect class="fill-lime" x="44" y="48" width="12" height="28" rx="1"/>
+      <rect class="fill-ink" x="62" y="60" width="12" height="16" rx="1"/>
+      <rect class="fill-lime" x="80" y="42" width="12" height="34" rx="1"/>
+      <circle class="jr-live" cx="24" cy="32" r="4"/>
+      <path class="tr" d="M48 88v10h24V88"/>
+     </svg>
+    </div>
+    <b class="jr-n">04</b>
+    <h3>Cai no painel e no link do cliente</h3>
+    <p>O número sobe na hora, para a sua equipe e para quem contratou a campanha.</p>
+   </article>
+  </div>
+
+  <p class="cq-pe"><b>Quatro segundos</b> do promotor na loja viram o dado que a marca cobra o mês inteiro.</p>
+ </section>
+
+ <!-- 05 .................................................. frente 1 · a página -->
+ <section class="slide t-light s-pagina" id="pagina" data-title="Frente 1 · a página" data-chap="01 · QR na peça">
+  <div class="pg-head">
+   <div class="eyebrow" data-n="(05)">Frente 01 de 03</div>
+   <h2 class="d">O QR não abre<br>um formulário.<br><span class="hl">Abre o treinamento.</span></h2>
+  </div>
+  <div class="pg-fones">
+   <figure class="pf a"><img src="img/cel-capa.webp" alt="Capa da página de produto no celular"></figure>
+   <figure class="pf b"><img src="img/cel-montagem.webp" alt="Passo a passo de montagem no celular"></figure>
+   <figure class="pf c"><img src="img/cel-video.webp" alt="Vídeo de montagem com capítulos no celular"></figure>
+  </div>
+  <ul class="pg-list">
+   <li><svg><use href="#i-layers"/></svg><b>Montagem passo a passo</b><span>com foto de cada encaixe</span></li>
+   <li><svg><use href="#i-play"/></svg><b>Vídeo com capítulos</b><span>pula direto para a etapa</span></li>
+   <li><svg><use href="#i-box"/></svg><b>Peça em 3D e realidade aumentada</b><span>ela aparece no chão da loja</span></li>
+   <li><svg><use href="#i-ok"/></svg><b>Checklist de execução</b><span>o que conferir antes de sair</span></li>
+  </ul>
+  <p class="pg-pe">O mesmo código que prova a instalação ensina a montar. O material chega na loja com o manual dentro.</p>
+ </section>
+
+ <!-- 06 ................................................... frente 2 · o painel -->
+ <section class="slide t-ink s-painel" id="painel" data-title="Frente 2 · o painel" data-chap="01 · QR na peça">
+  <div class="pn-l">
+   <div class="eyebrow plain" data-n="(06)">Frente 02 de 03</div>
+   <h2 class="d">Enquanto o promotor<br>monta, o painel<br><span class="ac">enche.</span></h2>
+   <p class="lead">Cada leitura vira linha, mapa e gráfico na mesma hora. Ninguém digita planilha, ninguém espera o fim da ação para saber onde a campanha está.</p>
+   <div class="pn-nums">
+    <div><b data-count="58">0</b><span>lojas positivadas</span></div>
+    <div><b data-count="118">0</b><span>peças executadas</span></div>
+    <div><b data-count="72">0</b><span>% com foto da fachada</span></div>
+   </div>
+  </div>
+  <figure class="pn-shot"><img src="img/tela-painel.webp" alt="Painel de instalações com os indicadores da campanha"></figure>
+ </section>
+
+ <!-- 07 .......................................................... indicadores -->
+ <section class="slide t-white s-indica" id="indica" data-title="O que você passa a saber" data-chap="01 · QR na peça">
+  <div class="in-head">
+   <div class="eyebrow" data-n="(07)">Leituras que saem do QR</div>
+   <h2 class="d">O que você passa<br>a saber <span class="hl">sem pedir</span> a ninguém.</h2>
+  </div>
+  <div class="in-cols">
+   <div class="ic-col">
+    <span class="ic-t"><svg><use href="#i-map"/></svg>Cobertura</span>
+    <ul><li>Lojas positivadas</li><li>Peças executadas</li><li>Penetração por rede</li><li>Por cidade e por estado</li></ul>
+   </div>
+   <div class="ic-col">
+    <span class="ic-t"><svg><use href="#i-clock"/></svg>Velocidade</span>
+    <ul><li>Tempo de positivação</li><li>Ritmo diário da campanha</li><li>Lojas novas por dia</li><li>Horário de pico do campo</li></ul>
+   </div>
+   <div class="ic-col">
+    <span class="ic-t"><svg><use href="#i-shield"/></svg>Qualidade</span>
+    <ul><li>Foto da fachada</li><li>Localização conferida</li><li>Peças por loja</li><li>Lojas paradas há 30 dias</li></ul>
+   </div>
+   <div class="ic-col">
+    <span class="ic-t"><svg><use href="#i-users"/></svg>Time</span>
+    <ul><li>Promotores ativos</li><li>Próprio contra agência</li><li>Lojas por promotor</li><li>Cruzamento rede e campanha</li></ul>
+   </div>
+  </div>
+  <figure class="in-shot"><img src="img/tela-painel-cruza.webp" alt="Cruzamentos e comparações no painel"></figure>
+ </section>
+
+ <!-- 08 ................................................ frente 3 · link cliente -->
+ <section class="slide t-lime s-link" id="link" data-title="Frente 3 · link do cliente" data-chap="01 · QR na peça">
+  <div class="lk-head">
+   <div class="eyebrow" data-n="(08)">Frente 03 de 03</div>
+   <h2 class="d">O cliente vê a execução<br>acontecer. <span class="box">Sem login.</span></h2>
+   <p class="lead">Um endereço por campanha. Quem tem o link acompanha os números subindo em tempo real, do celular, sem conta e sem senha.</p>
+  </div>
+  <figure class="lk-shot"><img src="img/tela-cliente.webp" alt="Página do cliente com o acompanhamento ao vivo da campanha"></figure>
+  <ul class="lk-selos">
+   <li><b>Ao vivo</b><span>atualiza sozinho a cada leitura</span></li>
+   <li><b>Sem app</b><span>abre no navegador do celular</span></li>
+   <li><b>No seu controle</b><span>bloqueia, edita ou dá validade ao link</span></li>
+  </ul>
+ </section>
+
+ <!-- 09 ............................................................... preço QR -->
+ <section class="slide t-ink s-preco" id="preco" data-title="Investimento do QR" data-chap="01 · QR na peça">
+  <div class="pr-head">
+   <div class="eyebrow plain" data-n="(09)">Investimento · QR na peça</div>
+   <h2 class="d">Um preço só,<br>sem tabela<br><span class="ac">para decorar.</span></h2>
+   <p class="lead">Cada peça rastreada custa o mesmo, do primeiro pedido ao milésimo. A plataforma inteira vai junto: página de montagem, painel de execução e link ao vivo para o cliente.</p>
+  </div>
+
+  <div class="pr-heroi">
+   <span class="ph-moeda">R$</span>
+   <b class="ph-n">0,50</b>
+   <span class="ph-sub">por peça<br>rastreada</span>
+  </div>
+
+  <ul class="pr-inclui">
+   <li><b>Página de montagem</b><span>passo a passo, vídeo e 3D no celular do promotor</span></li>
+   <li><b>Painel de execução</b><span>mapa, indicadores e Excel, em tempo real</span></li>
+   <li><b>Link ao vivo do cliente</b><span>acompanhamento sem login, que você bloqueia quando quiser</span></li>
+  </ul>
+
+  <div class="pr-sim">
+   <label class="pr-lab">Simule o seu volume</label>
+   <input id="prQ" type="range" min="100" max="60000" step="100" value="7000">
+   <div class="pr-out">
+    <div><b id="prQn">7.000</b><span>peças rastreadas</span></div>
+    <div class="tot"><b id="prT">R$ 3.500</b><span>investimento total</span></div>
+   </div>
+  </div>
+
+  <p class="pr-pe">Preço por peça, sem impostos extraordinários, frete ou personalização de arte. O volume é fechado por campanha.</p>
+ </section>
+
+ <!-- 10 ................................................... divisor capítulo 02 -->
+ <section class="slide t-ink s-quandotag" id="quandotag" data-title="Quando o QR não basta" data-chap="02 · Tag ao vivo">
+  <div class="qt-wrap">
+   <div class="eyebrow plain" data-n="(10)">Capítulo 02 · Tag ao vivo</div>
+   <h2 class="d">O QR prova que<br>chegou. A tag diz<br><span class="ac">onde está agora.</span></h2>
+   <div class="qt-duo">
+    <div class="qt-c">
+     <span class="qt-k"><svg><use href="#i-qr"/></svg>QR na peça</span>
+     <p>Alguém precisa ler. O dado nasce no momento da instalação e da revisita.</p>
+    </div>
+    <div class="qt-c on">
+     <span class="qt-k"><svg><use href="#i-live"/></svg>Tag ao vivo</span>
+     <p>Ninguém precisa ler. A peça avisa sozinha onde está, do CD até a loja e durante os meses de exposição.</p>
+    </div>
+   </div>
+  </div>
+ </section>
+
+ <!-- 11 ..................................................... como a tag funciona -->
+ <section class="slide t-white s-comotag" id="comotag" data-title="Tag · como funciona" data-chap="02 · Tag ao vivo">
+  <div class="ct-head">
+   <div class="eyebrow" data-n="(11)">Como a tag funciona</div>
+   <h2 class="d">A peça conta a viagem <span class="hl">sozinha.</span></h2>
+  </div>
+  <div class="ct-rota">
+   <div class="ct-linha"><i id="ctDot"></i></div>
+   <div class="ct-marcos">
+    <div class="ct-m"><svg><use href="#i-cd"/></svg><b>Saiu do CD</b><span>data e hora da saída</span></div>
+    <div class="ct-m"><svg><use href="#i-truck"/></svg><b>Em trânsito</b><span>tempo de transporte</span></div>
+    <div class="ct-m"><svg><use href="#i-store"/></svg><b>Chegou na loja</b><span>tempo até a gôndola</span></div>
+    <div class="ct-m alerta"><svg><use href="#i-alert"/></svg><b>Saiu da loja</b><span>alerta de perda</span></div>
+   </div>
+  </div>
+  <ul class="ct-plus">
+   <li><b>Tempo parado no CD</b><span>o display que ninguém mandou para a loja</span></li>
+   <li><b>Inventário de ativos</b><span>quantas peças ainda existem e onde</span></li>
+   <li><b>Vida útil no PDV</b><span>há quantos dias a peça está exposta</span></li>
+  </ul>
+ </section>
+
+ <!-- 12 ........................................................ planos da tag -->
+ <section class="slide t-light s-planos" id="planos" data-title="Planos da tag" data-chap="02 · Tag ao vivo">
+  <div class="pl-head">
+   <div class="eyebrow" data-n="(12)">Investimento · tag ao vivo</div>
+   <h2 class="d">Por display,<br>por mês.</h2>
+   <p class="lead">A tag é assinatura: o rastreio fica ligado enquanto a campanha estiver no ar. O registro do QR vai junto, sem custo extra.</p>
+  </div>
+  <div class="pl-cards">
+   <div class="plc"><span class="pl-m">6 meses</span><b>R$ 27,27</b><em>por display, por mês, à vista</em><p>Total de R$ 163,62 por display.</p></div>
+   <div class="plc on"><span class="pl-m">9 meses</span><b>R$ 27,27</b><em>por display, por mês, à vista</em><p>Total de R$ 245,43 por display.</p><i class="pl-sel">mais escolhido</i></div>
+   <div class="plc"><span class="pl-m">12 meses</span><b>R$ 27,27</b><em>por display, por mês, à vista</em><p>Total de R$ 327,24 por display.</p></div>
+  </div>
+  <p class="pl-pe">No parcelado mensal, R$ 34,09 por display por mês. À vista, 20% de desconto.</p>
+ </section>
+
+ <!-- 13 ........................................................ qual escolher -->
+ <section class="slide t-white s-escolher" id="escolher" data-title="Qual usar" data-chap="Decisão">
+  <div class="es-head">
+   <div class="eyebrow" data-n="(13)">Decisão</div>
+   <h2 class="d">Comece pelo QR.<br>Suba para a tag<br><span class="hl">quando doer.</span></h2>
+  </div>
+  <div class="es-duo">
+   <div class="es-c">
+    <span class="es-k">O QR já resolve</span>
+    <ul>
+     <li>Provar que a peça chegou e foi montada</li>
+     <li>Positivação por rede, cidade e estado</li>
+     <li>Foto da fachada para auditoria</li>
+     <li>Treinamento de montagem no celular</li>
+     <li>Link ao vivo para o cliente</li>
+    </ul>
+    <p class="es-q">Campanha de ciclo curto, material entregue direto na loja.</p>
+   </div>
+   <div class="es-c on">
+    <span class="es-k">Só a tag responde</span>
+    <ul>
+     <li>Onde a peça está agora, sem ninguém ler</li>
+     <li>Quanto tempo ficou parada no CD</li>
+     <li>Quanto tempo levou no transporte</li>
+     <li>Alerta quando o material sai da loja</li>
+     <li>Inventário do ativo mês a mês</li>
+    </ul>
+    <p class="es-q">Display de valor, que roda meses e passa por CD.</p>
+   </div>
+  </div>
+ </section>
+
+ <!-- 14 ........................................................ como começamos -->
+ <section class="slide t-lime s-comecar" id="comecar" data-title="Como começamos" data-chap="Decisão">
+  <div class="co-head">
+   <div class="eyebrow" data-n="(14)">Como começamos</div>
+   <h2 class="d">Da próxima campanha<br>em diante, com dado.</h2>
+  </div>
+  <ol class="co-steps">
+   <li><i>01</i><b>Escolher a campanha</b><span>quais peças entram e quantas lojas</span></li>
+   <li><i>02</i><b>Gerar os QR</b><span>um por peça, prontos para a arte ou para etiqueta</span></li>
+   <li><i>03</i><b>Avisar o campo</b><span>o promotor aprende em dez minutos, na primeira loja</span></li>
+   <li><i>04</i><b>Abrir o link do cliente</b><span>e acompanhar a execução acontecendo</span></li>
+  </ol>
+  <div class="co-cta">
+   <a class="btn escuro" href="https://wa.me/5511986765634" target="_blank" rel="noopener">Falar no WhatsApp <span class="arr">→</span></a>
+   <button class="btn alt" data-go="preco">Rever o investimento</button>
+  </div>
+ </section>
+
+ <!-- 15 ................................................. NEOBAND × 75 LAB -->
+ <section class="slide t-ink s-fim" id="fim" data-title="NEOBAND × 75 LAB" data-chap="A parceria">
+  <div class="fm-l">
+   <div class="eyebrow plain" data-n="(14)">A parceria</div>
+   <h2 class="d">Quem produz e quem<br><span class="ac">prova.</span></h2>
+   <p class="lead">A NEOBAND cuida do material: projeto, produção e entrega no ponto de venda. A 75 LAB cuida do dado: o QR em cada peça, o treinamento de montagem no celular do promotor e o painel que mostra a execução acontecendo.</p>
+   <div class="fm-duo">
+    <div class="fd-marca"><img src="img/neoband-wordmark-white.png" alt="NEOBAND"><span>Projeto, produção e logística do material de PDV</span></div>
+    <div class="fd-marca"><img src="img/logo-75lab-branco.png" alt="75 LAB" class="lg75"><span>Rastreamento, treinamento de montagem e painel de execução</span></div>
+   </div>
+  </div>
+  <div class="fm-dados">
+   <div class="fd"><span>Plataforma</span><b>75 LAB Estratégia, Design e Produção Ltda · CNPJ 55.470.982/0001-77</b></div>
+   <div class="fd"><span>Endereço</span><b>CENU Torre Norte · Av. das Nações Unidas, 12.901 · Brooklin, São Paulo, SP</b></div>
+   <div class="fd"><span>Contato</span><b>(11) 98676-5634 · contato@75lab.com.br</b></div>
+   <div class="fd"><span>Material</span><b>NEOBAND · para ideias de todos os tamanhos</b></div>
+   <div class="fd"><span>Sites</span><b>75lab.com.br · @setecincolab</b></div>
+  </div>
+  <div class="marquee"><div class="mq-in"><span>NEOBAND × 75 LAB</span><i>·</i><span>Do CD à gôndola, com prova</span><i>·</i><span>QR na peça</span><i>·</i><span>Tag ao vivo</span><i>·</i><span>Prova acima de promessa</span><i>·</i><span>NEOBAND × 75 LAB</span><i>·</i><span>Do CD à gôndola, com prova</span><i>·</i><span>QR na peça</span><i>·</i><span>Tag ao vivo</span><i>·</i><span>Prova acima de promessa</span><i>·</i></div></div>
+ </section>
+
+ <!-- HUD -->
+ <div id="hud">
+  <div class="hud-logo"><img class="lg-dark" src="img/logo-wordmark-black.png" alt="75 LAB"><img class="lg-lime" src="img/logo-wordmark-lime.png" alt=""></div>
+  <div class="hud-foot">
+   <span class="who" id="who"><b>NEOBAND × 75 LAB</b> · Rastreamento de PDV</span>
+   <div class="hud-nav">
+    <button class="idx" id="btnMenu"><svg><use href="#i-grid"/></svg>Índice</button>
+    <button id="btnPrev" aria-label="Anterior"><svg><use href="#i-l"/></svg></button>
+    <span class="cnt" id="cnt">01 <i>/ 15</i></span>
+    <button id="btnNext" aria-label="Próxima"><svg><use href="#i-arr"/></svg></button>
+   </div>
+  </div>
+ </div>
+
+ <div id="menu">
+  <h3>Índice</h3>
+  <button class="close" id="menuClose" aria-label="Fechar"><svg><use href="#i-no"/></svg></button>
+  <div id="menuList"></div>
+ </div>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
