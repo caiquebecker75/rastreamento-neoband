@@ -1,28 +1,27 @@
 # Rastreamento de PDV · NEOBAND × 75 LAB
 
-Versão da apresentação de rastreamento de PDV com a identidade da **NEOBAND**: mesma
-narrativa do deck da 75 LAB, com a paleta vermelha da marca, as duas assinaturas no
-cabeçalho e uma tela final que divide os papéis da parceria.
+Apresentação de **10 telas** que explica, em linguagem simples, como o QR code impresso na peça
+mostra onde o material foi instalado.
 
 ## Link público
 
 https://projetos.75lab.com.br/rastreamento-neoband/
 
-A versão só com a marca 75 LAB continua em https://projetos.75lab.com.br/rastreamento-75lab/
+A versão com a identidade da 75 LAB (mais longa, 16 telas) continua em
+https://projetos.75lab.com.br/rastreamento-75lab/
 
-## Estrutura (16 telas)
+## As dez telas
 
-Capa · as seis dores de quem toca trade · o ponto cego · a trilha da conversa ·
-capítulo 01 do QR (jornada em quatro paradas, página de montagem, painel de execução,
-link ao vivo do cliente, investimento de R$ 0,50 por peça) · capítulo 02 da tag ao vivo
-(quando o QR não basta, como funciona, planos) · qual usar em cada caso · como começamos ·
-a parceria NEOBAND × 75 LAB.
+Capa · o problema de hoje · a ideia do QR code · como funciona em quatro passos ·
+o que o promotor vê no celular · o painel · o link ao vivo do cliente · quanto custa ·
+quando a tag ao vivo entra · a parceria e os contatos.
 
-Navegação: setas ou espaço, `M` abre o índice, swipe no celular. Link direto para uma tela
-pelo id, por exemplo `#preco`.
+## Visual
 
-## Arquivos
+Segue a comunicação do site da NEOBAND (neoband.com.br): fundo claro, cantos bem arredondados,
+vermelho #D20A11 com a caixa de destaque atrás da palavra, amarelo #F4A800 e areia #E7D0B1 como
+apoio, tipografia Montserrat e as bolinhas do logotipo como assinatura gráfica.
 
-`index.html` + `style.css` + `script.js` + `img/`. Sem build: editar e publicar.
-O tema da NEOBAND é o último bloco do `style.css`, então a estrutura segue igual à do deck
-original e as duas versões podem evoluir juntas.
+Arquivo único por tipo: `index.html` + `style.css` + `script.js` + `img/`. Sem build.
+Palco fixo de 1600 × 900 escalado para qualquer tela. Navegação por setas, espaço, swipe e
+a tecla `M` para o índice.
