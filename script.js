@@ -31,6 +31,7 @@
     document.querySelectorAll('.lg-claro').forEach(function (i) { i.hidden = escuro; });
     document.querySelectorAll('.lg-escuro').forEach(function (i) { i.hidden = !escuro; });
     stage.setAttribute('data-slide', s.id);
+    stage.setAttribute('data-tema', escuro ? 'escuro' : 'claro');
     $('prog').style.width = ((cur + 1) / N * 100) + '%';
     $('cnt').innerHTML = pad(cur + 1) + ' <i>/ ' + pad(N) + '</i>';
     $('who').innerHTML = '<b>NEOBAND × 75 LAB</b> · ' + (s.getAttribute('data-chap') || 'Rastreamento de PDV');

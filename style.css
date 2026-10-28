@@ -19,6 +19,7 @@ body{font-family:'Montserrat',system-ui,sans-serif;font-weight:400;color:var(--i
 button{font:inherit;color:inherit;background:none;border:none;text-align:inherit;cursor:pointer}
 input{font:inherit}
 ul,ol{list-style:none}
+a{color:inherit;text-decoration:none}
 svg{overflow:visible}
 @media (pointer:fine){ body,button,input,label,[data-go]{cursor:none!important} }
 
@@ -104,7 +105,8 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.04}
 .hud-nav svg{width:18px;height:18px;color:var(--ink)}
 .hud-nav .idx{width:auto;padding:0 18px;gap:8px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center}
 .cnt{font-weight:700;color:var(--ink);font-size:13px}
-.t-vermelho .cnt,.t-escuro .cnt{color:#fff}
+#stage[data-tema="escuro"] .cnt{color:#fff}
+#stage[data-tema="escuro"] .cnt i{color:rgba(255,255,255,.6)}
 .cnt i{font-style:normal;color:var(--ink3);font-weight:500}
 
 /* índice */
@@ -256,6 +258,12 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.04}
 .s-fim .papel span{font-size:16px;color:rgba(255,255,255,.9);line-height:1.45}
 .s-fim .contato{background:#fff;border-radius:var(--r-g);padding:44px;color:var(--ink);box-shadow:0 30px 80px rgba(0,0,0,.2)}
 .s-fim .contato h3{font-size:26px}
+.s-fim .contato .pessoa{padding:16px 0;border-bottom:1px solid var(--linha);display:grid;gap:2px}
+.s-fim .contato .pessoa b{font-size:18px;font-weight:700}
+.s-fim .contato .pessoa small{font-size:12px;color:var(--ink3);font-weight:600;letter-spacing:.04em;text-transform:none}
+.s-fim .contato .pessoa a{font-size:16px;color:var(--vermelho);font-weight:700;margin-top:5px;transition:.2s}
+.s-fim .contato .pessoa a.mail{font-size:13px;color:var(--ink2);font-weight:500;margin-top:0}
+.s-fim .contato .pessoa a:hover{color:var(--vermelho-3)}
 .s-fim .contato .linha{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--linha);font-size:15px}
 .s-fim .contato .linha:last-of-type{border-bottom:0}
 .s-fim .contato .linha b{font-weight:700}
