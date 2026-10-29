@@ -215,21 +215,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.04}
 .s-link .selo{background:rgba(255,255,255,.14)}
 .s-link .selo span{color:rgba(255,255,255,.8)}
 
-/* 08 preço */
-.s-preco{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 var(--pad)}
-.s-preco h2{font-size:58px;max-width:520px;margin-top:18px}
-.s-preco .lead{margin-top:24px;max-width:500px}
-.s-preco .inclui{margin-top:30px;display:grid;gap:12px;max-width:520px}
-.s-preco .inclui li{display:flex;gap:14px;align-items:center;font-size:17px;color:var(--ink2)}
-.s-preco .inclui svg{width:24px;height:24px;color:var(--verde);flex:none}
-.s-preco .caixa{justify-self:center;background:#fff;border-radius:var(--r-g);padding:56px 64px;text-align:center;box-shadow:0 30px 80px rgba(27,31,35,.12)}
-.s-preco .caixa small{display:block;font-size:15px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink3)}
-.s-preco .caixa .num{font-size:130px;font-weight:800;line-height:1;color:var(--vermelho);letter-spacing:-.04em;margin:14px 0}
-.s-preco .caixa .num em{font-style:normal;font-size:52px;vertical-align:super;margin-right:6px}
-.s-preco .caixa p{font-size:18px;color:var(--ink2)}
-.s-preco .caixa .obs{margin-top:22px;padding-top:20px;border-top:2px dashed var(--linha);font-size:15px;color:var(--ink3)}
-
-/* 09 tag ao vivo */
+/* 08 tag ao vivo */
 .s-tag{padding:var(--pad);display:grid;grid-template-rows:auto 1fr}
 .s-tag h2{font-size:56px;max-width:900px;margin-top:18px}
 .s-tag .duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:54px;align-content:start}
@@ -247,7 +233,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.04}
 .s-tag .col.on li::before{background:var(--amarelo)}
 .s-tag .pe{margin-top:auto;font-size:18px;color:var(--ink2)}
 
-/* 10 fecho */
+/* 09 fecho */
 .s-fim{padding:var(--pad);display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px}
 .s-fim h2{font-size:62px;max-width:620px}
 .s-fim .lead{margin-top:24px;max-width:560px}
